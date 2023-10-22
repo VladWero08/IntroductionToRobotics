@@ -11,7 +11,15 @@ Every single homework will have its description, references, implementation deta
 ## Homework 02
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
 
-I used exactly **3 potentiometers** to control each channel. Also, I have mapped each potentiometer's value to an RGB valid value with which I have modified the color channel intensity.
+I used exactly **3 potentiometers** to control each channel. Also, I have mapped each potentiometer's value to an RGB valid value with which I have modified the color channel intensity. This was the Arduino setup:
+
+<div style="display: flex">
+
+| From the top | From the side|
+| ---------- | ---------- |
+| ![circuit01](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/fa89d0c7-f157-47c2-8284-5bd2edd08d8d) | ![circuit02](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/dac2c372-9510-41cc-987e-60f4b6065b7a) | 
+
+Check out the [demo](https://youtube.com/shorts/dFWHFmvstL8?feature=share).
 
 ## Homework 03
 

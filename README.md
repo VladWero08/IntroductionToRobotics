@@ -5,10 +5,9 @@ This repository includes homework written for the course entitled **Introduction
 Every single homework will have its description, references, implementation details, and source code. 
 
 #### Table of contents
-- [H02 - TBA](#homework-02)
-- [H03 - TBA](#homework-03)
+- [H02 - RGB LED controlled by potentiometers](#homework-02)
 
-## Homework 02
+## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
 
 I used exactly **3 potentiometers** to control each channel. Also, I have mapped each potentiometer's value to an RGB valid value with which I have modified the color channel intensity. This was the Arduino setup:

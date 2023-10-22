@@ -20,9 +20,6 @@ I used exactly **3 potentiometers** to control each channel. Also, I have mapped
 
 Check out the [demo](https://youtube.com/shorts/dFWHFmvstL8?feature=share).
 
-## Homework 03
-
-
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3
 [^3]: _How does an RGB LED work?_ : https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color

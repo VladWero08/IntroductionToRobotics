@@ -18,6 +18,13 @@
     By Olaeriu Vlad Mihai
 */
 
+#include "queue.h"
+
+// if the elevator is moving and a button is pressed,
+// add that request to a waiting queue that can be of maximum size 10
+const int elevator_waiting_queue_max_size = 10;
+Queue<int> elevator_waiting_queue = Queue<int>(elevator_waiting_queue_max_size);
+
 // each floor of the elevator will have an LED connected to a PIN,
 // this array holds the PINS used for this elevator as:
 // floor 0 has PIN 2: elevator_floor_LED_PINS[0] = 2 
@@ -62,8 +69,8 @@ int elevator_direction = 1;
 // the last time the elevator has moved
 unsigned long elevator_last_movement_time = 0;
 
-// LOW if the doors are closed, HIGH if they are opened
-byte elevator_doors = LOW;
+// LOW if the doors are opened, HIGH if they are closed
+byte elevator_doors_are_closed = LOW;
 // the time since the doors state has changed
 unsigned long elevator_doors_state_change_time = 0;
 // the time it takes for the elevator to 
@@ -91,6 +98,7 @@ void loop() {
   elevator_button_handler(elevator_floor_1_button);
   elevator_button_handler(elevator_floor_2_button);
 
+  elevator_waiting_queue_handler();
   elevator_tries_closing_doors();
   elevator_tries_moving();
 
@@ -158,31 +166,60 @@ void elevator_button_handler(elevator_button &elevator_button_){
 }
 
 /*
-  Function that will check if the elevator is moving in the current moment.
-  
-  If it is not, the destination floor of the elevator will be `destination_floor`
-  parameter received in the function.
+  Function that will handle a pushbutton press on any floor.
+
+  If a button has been pushed, try to schedule the elevator
+  to go to the desired floor. If the waiting queue is already filled,
+  display an warning message.
 */
 void elevator_floor_change_handler(int destination_floor){
-  // if the elevator is moving, ignore the desired change 
-  if(elevator_is_moving == HIGH){
-    return;
-  }
-
-  // if the elevator is already on the desired floor
-  if(destination_floor == elevator_current_floor){
-    return;
-  }  
-
   if(destination_floor < 0 || destination_floor > 2){
     Serial.print("The elevator has only 3 floors! [0, 1, 2]. floor ");
     Serial.print(destination_floor);
     Serial.println(" has been required.");
-
     return;
   }
 
-  elevator_doors = HIGH;
+  // if there is any space left in the waiting queue,
+  // schedule the elevator to go to the `destination_floor`
+  if(elevator_waiting_queue.count() < elevator_waiting_queue_max_size){
+    elevator_waiting_queue.push(destination_floor);
+  } else{
+    Serial.println("Sorry, the waiting queue for the elevator is FULL!");
+  }
+}
+
+/*
+  Function that will handle the waiting queue.
+
+  If the elevator is not moving AND the waiting queue is not empty, 
+  try to pop an event from the waiting queue. 
+  
+  If the elevator is not already
+  at the desired floor, go to that floor.
+*/
+void elevator_waiting_queue_handler(){
+  // if the elevator is moving or 
+  // its doors are being closed, exit
+  if(elevator_is_moving == HIGH || elevator_doors_are_closed == HIGH){
+    return;
+  }
+  
+  // if no events were scheduled, exit
+  if(elevator_waiting_queue.count() == 0){
+    return;
+  }
+
+  // get an scheduled event from the queue
+  int destination_floor = elevator_waiting_queue.pop();
+
+  // if the elevator is already on the desired floor, exit
+  if(destination_floor == elevator_current_floor){
+    return;
+  }
+
+  // otherwise, the elevator should start moving
+  elevator_doors_are_closed = HIGH;
   // update the time when the elevator doors changed
   elevator_doors_state_change_time = millis();
   // update the elevator destination
@@ -202,7 +239,7 @@ void elevator_floor_change_handler(int destination_floor){
   before the elevator will start moving.
 */
 void elevator_tries_closing_doors(){
-  if(elevator_doors == LOW)
+  if(elevator_doors_are_closed == LOW)
     // if elevator doors are not closing, exit
     return;
 
@@ -210,7 +247,7 @@ void elevator_tries_closing_doors(){
   if((millis() - elevator_doors_state_change_time) > elevator_actions_interval){
     // if the amount of time has passed, elevator can start
     // moving, and the the elevator moving LED will start blinking
-    elevator_doors = LOW;
+    elevator_doors_are_closed = LOW;
     elevator_is_moving = HIGH;
     elevator_last_movement_time = millis();
     elevator_moving_LED_blinking_state = HIGH;

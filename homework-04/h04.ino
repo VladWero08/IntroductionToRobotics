@@ -69,7 +69,7 @@ segment_LED joystick_LED = {pin_DP.pin, pin_DP.position, pin_DP.state};
 the LED controlled by the joystick occured*/
 long int joystick_LED_last_blinking = 0;
 // interval between blinkings of the LED
-const int joystick_LED_blinking_interval = 500;
+const int joystick_LED_blinking_interval = 250;
 
 /* number of ms for which the button must be pressed 
 to reset the segment*/
@@ -79,20 +79,20 @@ const int joystick_directions = 4;
 /* each direction of the joystick will have a
 column in the matrix associated*/
 const int joystick_up = 0;
-const int joystick_right = 1;
-const int joystick_down = 2;
-const int joystick_left = 3;
+const int joystick_down = 1;
+const int joystick_left = 2;
+const int joystick_right = 3;
 
 int joystick_movement_matrix[segment_size][joystick_directions] = {
-// up      right   down    left
-  {&pin_A, &pin_B, &pin_G, &pin_F},       // pin_A
-  {&pin_A, &pin_B, &pin_G, &pin_F},       // pin_B
-  {&pin_G, &pin_DP, &pin_D, &pin_E},      // pin_C
-  {&pin_G, &pin_C, &pin_D, &pin_E},       // pin_D
-  {&pin_G, &pin_C, &pin_D, &pin_E},       // pin_E
-  {&pin_A, &pin_B, &pin_G, &pin_F},       // pin_F
-  {&pin_A, &pin_G, &pin_D, &pin_G},       // pin_G
-  {&pin_DP, &pin_DP, &pin_DP, &pin_C}     // pin_DP
+// up      down    left    right
+  {&pin_A, &pin_G, &pin_F, &pin_B},       // pin_A
+  {&pin_A, &pin_G, &pin_F, &pin_B},       // pin_B
+  {&pin_G, &pin_D, &pin_E, &pin_DP},      // pin_C
+  {&pin_G, &pin_D, &pin_E, &pin_C},       // pin_D
+  {&pin_G, &pin_D, &pin_E, &pin_C},       // pin_E
+  {&pin_A, &pin_G, &pin_F, &pin_B},       // pin_F
+  {&pin_A, &pin_D, &pin_G, &pin_G},       // pin_G
+  {&pin_DP, &pin_DP, &pin_C, &pin_DP}     // pin_DP
 };
 
 /* joystick bounds that will identify in which
@@ -104,7 +104,7 @@ const int joystick_left_bound = 256;                  // 512 - 256
 const int joystick_middle_interval[2] = {492, 532};   // 512 - 20, 512 + 20
 
 long int joystick_last_direction_change = 0;
-const int joystick_last_direction_interval = 500;
+const int joystick_last_direction_interval = 400;
 
 bool joystick_current_switch_state = LOW;
 bool joystick_last_switch_state = LOW;
@@ -242,7 +242,7 @@ void joystick_switch_handler(){
       if (joystick_current_switch_state == HIGH) {
         /* if the button is pressed, update the LED's state
         to which the joystick is currently pointing at*/
-        joystick_LED_pointer->state = !joystick_LED_pointer->state
+        joystick_LED_pointer->state = !joystick_LED_pointer->state;
       }
     }
   } 

@@ -40,9 +40,9 @@ After the _switch button_ on the joystick is pressed, the current segment will c
 
 | From the top | From the side|
 | ---------- | ---------- |
-| TO DO | TO DO |
+| ![circuit_h4_top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/917d96ae-88f7-4547-8046-e60cd0960568) | ![circuit_h4_side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/aff6561a-888f-4102-8a02-0371cb09ddd0) |
 
-Check out the <a href="#">demo</a>. 
+Check out the <a href="https://youtube.com/shorts/6vFm29PpfPI">demo</a>. 
 
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3

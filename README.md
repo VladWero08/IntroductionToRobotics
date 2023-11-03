@@ -5,7 +5,8 @@ This repository includes homework written for the course entitled **Introduction
 Every single homework will have its description, references, implementation details, and source code. 
 
 #### Table of contents
-- [H02 - RGB LED controlled by potentiometers](#homework-02-rgb-led-controlled-by-potentiometers)
+- [H02 - RGB LED controlled by potentiometers](#homework-02)
+- [H03 - Elevator wannabe](#homework-03)
 
 ## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
@@ -19,7 +20,7 @@ I used exactly **3 potentiometers** to control each channel. Also, I have mapped
 Check out the <a href="https://youtube.com/shorts/dFWHFmvstL8?feature=share" target="_blank">demo</a>.
 
 ## Homework 03 - Elevator wannabe
-This assignment aimed  to simulate _a 3-floor elevator control system_ using LEDs and buttons. Also, to get more familiar with debouncing [^4] techniques and coordinating multiple components.
+This assignment aimed to simulate _a 3-floor elevator control system_ using LEDs and buttons. Also, to get more familiar with debouncing [^4] techniques and coordinating multiple components.
 
 I used **a red LED and a pushbutton** for each of the elevator's level. Besides this, I added a **green LED** that is blinking during the elevator movement.
 If the elevator is moving and another pushbutton is pressed, schedule the event in a _waiting queue_. ( source code for the queue implementation can be find [here](https://github.com/sdesalas/Arduino-Queue.h) )
@@ -30,9 +31,21 @@ If the elevator is moving and another pushbutton is pressed, schedule the event 
 
 Check out the <a href="https://youtube.com/shorts/Dna8v8pamGY" target="_blank">demo</a>. [WITHOUT waiting queue]
 
-Check out the 2nd <a href="https://youtube.com/shorts/a4mvA3g6lFc?feature=share" targel="_blank">demo</a> [WITH waiting queue].
+Check out the 2nd <a href="https://youtube.com/shorts/a4mvA3g6lFc?feature=share" targel="_blank">demo</a>. [WITH waiting queue]
+
+## Homework 04 - 7-segment display controlled by a joystick
+The focus for this assignment to control the position of the 7-segment display [^5] and to _draw_ on the display. The movement between segments is natural, meaning that they jump only to their neighbours.
+
+After the _switch button_ on the joystick is pressed, the current segment will change its state (ON -> OFF, OFF -> ON). To reset all the segments, press the switch button for 2 seconds.
+
+| From the top | From the side|
+| ---------- | ---------- |
+| TO DO | TO DO |
+
+Check out the <a href="#">demo</a>. 
 
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3
 [^3]: _How does an RGB LED work?_ : https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color
 [^4]: _Debounce on a pushbutton_ : https://docs.arduino.cc/built-in-examples/digital/Debounce
+[^5]: _7-segment display_: https://en.wikipedia.org/wiki/Seven-segment_display

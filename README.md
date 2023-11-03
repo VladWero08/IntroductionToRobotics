@@ -22,12 +22,15 @@ Check out the <a href="https://youtube.com/shorts/dFWHFmvstL8?feature=share" tar
 This assignment aimed  to simulate _a 3-floor elevator control system_ using LEDs and buttons. Also, to get more familiar with debouncing [^4] techniques and coordinating multiple components.
 
 I used **a red LED and a pushbutton** for each of the elevator's level. Besides this, I added a **green LED** that is blinking during the elevator movement.
+If the elevator is moving and another pushbutton is pressed, schedule the event in a _waiting queue_. ( source code for the queue implementation can be find [here](https://github.com/sdesalas/Arduino-Queue.h) )
 
 | From the top | From the side|
 | ---------- | ---------- |
 | ![circuit_h3_top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/65e59c57-b88b-4305-ae58-7666abb763f7) |![circuit_h3_side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/2e3b1604-4ef2-4801-b4eb-780360071633) |
 
- Check out the <a href="https://youtube.com/shorts/Dna8v8pamGY" target="_blank">demo</a>.
+Check out the <a href="https://youtube.com/shorts/Dna8v8pamGY" target="_blank">demo</a>. [WITHOUT waiting queue]
+
+Check out the 2nd <a href="https://youtube.com/shorts/a4mvA3g6lFc?feature=share" targel="_blank">demo</a> [WITH waiting queue].
 
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3

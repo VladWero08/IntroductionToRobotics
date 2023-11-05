@@ -7,6 +7,7 @@ Every single homework will have its description, references, implementation deta
 #### Table of contents
 - [H02 - RGB LED controlled by potentiometers](#homework-02)
 - [H03 - Elevator wannabe](#homework-03)
+- [H04 - 7-segment display controlled by a joystick](#homework-04)
 
 ## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 

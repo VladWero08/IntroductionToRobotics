@@ -18,7 +18,7 @@ I used exactly **3 potentiometers** to control each channel. Also, I have mapped
 | ---------- | ---------- |
 | ![circuit01](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/fa89d0c7-f157-47c2-8284-5bd2edd08d8d) | ![circuit02](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/dac2c372-9510-41cc-987e-60f4b6065b7a) | 
 
-Check out the <a href="https://youtube.com/shorts/dFWHFmvstL8?feature=share" target="_blank">demo</a>.
+Check out the <a href="https://youtube.com/watch/dFWHFmvstL8?feature=share" target="_blank">demo</a>.
 
 ## Homework 03 - Elevator wannabe
 This assignment aimed to simulate _a 3-floor elevator control system_ using LEDs and buttons. Also, to get more familiar with debouncing [^4] techniques and coordinating multiple components.
@@ -30,9 +30,9 @@ If the elevator is moving and another pushbutton is pressed, schedule the event 
 | ---------- | ---------- |
 | ![circuit_h3_top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/65e59c57-b88b-4305-ae58-7666abb763f7) |![circuit_h3_side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/2e3b1604-4ef2-4801-b4eb-780360071633) |
 
-Check out the <a href="https://youtube.com/shorts/Dna8v8pamGY" target="_blank">demo</a>. [WITHOUT waiting queue]
+Check out the <a href="https://youtube.com/watch/Dna8v8pamGY" target="_blank">demo</a>. [WITHOUT waiting queue]
 
-Check out the 2nd <a href="https://youtube.com/shorts/a4mvA3g6lFc?feature=share" targel="_blank">demo</a>. [WITH waiting queue]
+Check out the 2nd <a href="https://youtube.com/watch/a4mvA3g6lFc?feature=share" targel="_blank">demo</a>. [WITH waiting queue]
 
 ## Homework 04 - 7-segment display controlled by a joystick
 The focus for this assignment to control the position of the 7-segment display [^5] and to _draw_ on the display. The movement between segments is natural, meaning that they jump only to their neighbours.
@@ -43,7 +43,7 @@ After the _switch button_ on the joystick is pressed, the current segment will c
 | ---------- | ---------- |
 | ![circuit_h4_top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/917d96ae-88f7-4547-8046-e60cd0960568) | ![circuit_h4_side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/aff6561a-888f-4102-8a02-0371cb09ddd0) |
 
-Check out the <a href="https://youtube.com/shorts/6vFm29PpfPI">demo</a>. 
+Check out the <a href="https://youtube.com/watch/6vFm29PpfPI">demo</a>. 
 
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3

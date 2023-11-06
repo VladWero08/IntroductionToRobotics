@@ -45,7 +45,7 @@ segment_LED pin_DP = {4, 7, LOW};
 
 /* holds information about the active state of the LEDs,
 depending if they have common anode/cathode */
-const bool active_state = HIGH;
+const bool segment_active_state = HIGH;
 const int segment_size = 8;
 /* array that contains all the pins values that
 are connected to the 7 segment display */
@@ -108,7 +108,7 @@ const int joystick_last_direction_interval = 400;
 
 bool joystick_current_switch_state = LOW;
 bool joystick_last_switch_state = LOW;
-long int joystick_last_switch_debounce_time = 0;
+long int joystick_switch_debounce_time = 0;
 const int joystick_switch_debounce_interval = 100;
 
 void setup() {
@@ -117,7 +117,7 @@ void setup() {
     pinMode(segment_LEDs[i]->pin, OUTPUT);
     
     // set all LEDs to their inactive state
-    segment_LEDs[i]->state = !active_state;
+    segment_LEDs[i]->state = !segment_active_state;
   }
 
   pinMode(pin_SW, INPUT_PULLUP);
@@ -155,7 +155,7 @@ void write_to_segment_LEDs(){
 */
 void reset_segment_LEDs(){
   for (int i = 0; i < segment_size; i++) {
-    segment_LEDs[i]->state = !active_state;
+    segment_LEDs[i]->state = !segment_active_state;
   }
 
   joystick_LED_pointer = &pin_DP;
@@ -229,10 +229,10 @@ void joystick_switch_handler(){
 
   if (joystick_switch_state != joystick_last_switch_state) {
     // if the state has changed, update the last debounce time of the button
-    joystick_last_switch_debounce_time = millis();
+    joystick_switch_debounce_time = millis();
   } 
 
-  if ((millis() - joystick_last_switch_debounce_time) > joystick_switch_debounce_interval) {
+  if ((millis() - joystick_switch_debounce_time) > joystick_switch_debounce_interval) {
     /* because it passed a certain debounce time, it means that the reading state
     is not a noise, so the current state of the button must be changed*/
     
@@ -247,7 +247,7 @@ void joystick_switch_handler(){
     }
   } 
 
-  if ((millis() - joystick_last_switch_debounce_time) == joystick_reset_interval && joystick_switch_state == HIGH){
+  if ((millis() - joystick_switch_debounce_time) == joystick_reset_interval && joystick_switch_state == HIGH){
     /*if the button has been pressed for enough time,
     reset the 7-segment display*/
     reset_segment_LEDs();

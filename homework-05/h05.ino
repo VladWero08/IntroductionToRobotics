@@ -1,3 +1,39 @@
+/*
+  Stopwatch timer
+
+  Circuit that uses a 4 digit 7-segment display that counts in 10ths of second and has 
+  save lap functionality ( similar to most basic stopwatch functions on most phones ).
+
+  Circuit components:
+  - INTPUT:
+    - DIGITAL 13: pushbutton for running state
+    - DIGITAL 13: pushbutton for reset
+    - DIGITAL 13: pushbutton for laps
+  - OUTPUT:
+    - 4 digit 7-segment display:
+      - D1: Arduino's DIGITAL 4
+      - D2: Arduino's DIGITAL 5
+      - D3: Arduino's DIGITAL 6
+      - D4: Arduino's DIGITAL 7
+    - Shift REGISTER: 
+      - DS: Arduino's DIGITAL 12
+      - STCP: Arduino's DIGITAL 11
+      - SHCP: Arduino's DIGITAL 10 
+
+  Shift Register PIN  |   4 digit 7-segment display PIN
+  -----------------------------------------------------
+  Q7                  | A
+  Q6                  | B
+  Q5                  | C
+  Q4                  | D
+  Q3                  | E
+  Q2                  | F
+  Q1                  | G 
+  Q0                  | DP
+
+  Created 12-11-2023
+  By Olaeriu Vlad Mihai
+*/
 const int data_pin = 12;    // pin for serial data input for the shift register
 const int latch_pin = 11;   // pin for latching data into the shift register
 const int clock_pin = 10;   // pin for the shift register clock

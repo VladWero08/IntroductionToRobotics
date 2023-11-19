@@ -8,6 +8,7 @@ Every single homework will have its description, references, implementation deta
 - [H02 - RGB LED controlled by potentiometers](#homework-02)
 - [H03 - Elevator wannabe](#homework-03)
 - [H04 - 7-segment display controlled by a joystick](#homework-04)
+- [H05 - Stopwatch timer](#homework-05) 
 
 ## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
@@ -45,8 +46,24 @@ After the _switch button_ on the joystick is pressed, the current segment will c
 
 Check out the <a href="https://youtube.com/watch/6vFm29PpfPI">demo</a>. 
 
+## Homework 05 - Stopwatch timer
+The aim of this assignment was to simulate a stopwatch timer using a _4 digit 7 segment display_ [^6] and _3 buttons_. The buttons will have the following functionalities: 
+- button 1: start / pause
+- button 2: reset the stopwatch ( if in _PAUSE_ mode), reset the saved laps ( if in _lap viewing mode_)
+- button 3: save lap ( if in _RUNNING_ mode ), cycle through last saved laps ( _maximum 4 laps_ )
+
+Whenever pressing the **lap button (2nd)**, while the stopwatch is _running_, the current time will be saved in a list with all _saved laps_. If more than 4 laps will be saved, the previous laps will be overridden. 
+When pressing the **reset button (3rd)**, while the stopwatch is _paused_, the stopwatch will go back to _000.0_; respectively, while _displaying the saved laps_, all the saved laps will be deleted _and_ the stopwatch will be reset.
+
+| From the top | From the side|
+| ---------- | ---------- |
+| ![circuit_h5_top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/e5f5ffe9-6352-464e-8eca-9773a5b34dca) | ![circuit_h5_side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/56d57b78-5e2e-40b2-9deb-694b13d9462d) | 
+
+Check out the <a href="https://www.youtube.com/watch?v=1QCtBLAy9iM">demo</a>. 
+
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3
 [^3]: _How does an RGB LED work?_ : https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color
 [^4]: _Debounce on a pushbutton_ : https://docs.arduino.cc/built-in-examples/digital/Debounce
 [^5]: _7-segment display_: https://en.wikipedia.org/wiki/Seven-segment_display
+[^6]: _4-digit 7 segment display_: https://softwareparticles.com/learn-how-a-4-digit-7-segment-led-display-works-and-how-to-control-it-using-an-arduino/

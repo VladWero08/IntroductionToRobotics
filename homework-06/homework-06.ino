@@ -60,7 +60,7 @@ unsigned int current_menu = 0;
 the program: main, sensor, logger, system and RGB LED menus*/
 String main_menu_error_input = "Invalid input! Number in interval [1-4] is expected.";
 String sensor_menu_error_input = "Invalid input! Number in interval [1-4] is expected.";
-String logger_menu_error_input = "Invalid input! `y` or `n` is expected.";
+String logger_menu_error_input = "Invalid input! 0 or 1 are expected.";
 String system_menu_error_input = "Invalid input! Number in interval [1-4] is expected.";
 String RGB_LED_menu_error_input = "Invalid input! Number in interval [1-3] is expected.";
 
@@ -83,6 +83,7 @@ void loop() {
     choose_menu_to_display();
   }
 
+  display_current_sensor_readings();
   read_ultrasonic_sensor();
   read_photocell_sensor();
   write_to_RGB_LED();
@@ -98,7 +99,6 @@ void handle_user_input(){
     case 0:
       handle_user_input_on_main_menu();
       break;
-    
     case 1:
       handle_user_input_on_sensor_menu();
       break;
@@ -111,18 +111,15 @@ void handle_user_input(){
     case 13:
       read_photocell_threshold();
       break;
-    
     case 2:
       handle_user_input_on_logger_menu();
       break;
-
     case 3:
       handle_user_input_on_system_menu();
       break;
     case 31:
-      display_current_sensor_readings();
+      handle_user_input_sensor_readings();
       break;
-    
     case 4:
       handle_user_input_on_RGB_LED_menu();
       break;
@@ -239,31 +236,32 @@ void read_ultrasonic_threshold(){
 }
 
 void handle_user_input_on_logger_menu(){
-  user_input_str = Serial.readString();
+  user_input_int = Serial.parseInt();
 
-  if (user_input_str != "y" || user_input_str != "n") {
+  if (user_input_int != 0 && user_input_int != 1) {
     /* user input is not valid, print an error
     message and exit the function */
     Serial.println(logger_menu_error_input);
     return;
   }
 
-  if (user_input_str == "y") {
-    return;
-  } else {
-    return;
-  }
+  if (user_input_int == 0) {
+    Serial.println("yes");
+  } 
+
+  current_menu = 1;
 }
 
 void handle_user_input_on_system_menu(){
   user_input_int = Serial.parseInt();
 
   if (user_input_int < 1 || user_input_int > 4) {
-        /* user input is not valid, print an error
+    /* user input is not valid, print an error
     message and exit the function */
     Serial.println(system_menu_error_input);
     return;
   } 
+
   switch (user_input_int) {
     case 1:
       // switch to displaying current data from sensors
@@ -284,11 +282,14 @@ void handle_user_input_on_system_menu(){
   }
 }
 
+/* 
+  Displays sensor values 
+  if the current menu corresponds.
+*/
 void display_current_sensor_readings(){
-  user_input_int = Serial.parseInt();
-
-  if (user_input_int == 1) {
-    current_menu = 3;
+  if (current_menu != 31){
+    // exit if the chosen menu is not for sensor reading
+    return; 
   }
 
   /* sampling interval it's in seconds, so
@@ -302,6 +303,20 @@ void display_current_sensor_readings(){
     Serial.println();
 
     last_long_displayed = millis();
+  }
+}
+
+/* 
+  Reads the user input, and if the exit code
+  was entered, switch the menu back to the `System Status` menu.
+*/
+void handle_user_input_sensor_readings(){
+  user_input_int = Serial.parseInt();
+
+  if (user_input_int == 1) {
+    // exit if the user chose to exit 
+    current_menu = 3;
+    return;
   }
 }
 
@@ -325,14 +340,17 @@ void display_logged_data(){
     /* add the maximum number of logs for a photocell to
     get the address for the ultrasonic sensor */
     int ultrasonic_index_address = photocell_index_address + 2 * maximum_logs;
-  
-    EEPROM.get(photocell_index_address, photocell_counter_value);
-    EEPROM.get(ultrasonic_index_address, ultrasonic_counter_value);
 
+    photocell_counter_value = EEPROM.read(photocell_index_address);
+    ultrasonic_counter_value = EEPROM.read(ultrasonic_index_address);
+
+    Serial.print(i + 1);
+    Serial.println("th iteration:");
     Serial.print("Photocell: ");
     Serial.println(photocell_counter_value);
     Serial.print("Ultrasonic: ");
     Serial.println(ultrasonic_counter_value);
+    Serial.println();
   }
 }
 
@@ -458,8 +476,8 @@ void read_photocell_sensor(){
   /* write the value as a log at % 2 * maximum_logs,
   because if the number of logs will exceed the maximum logs,
   previous logs will be overwritten */ 
-  eeprom_photocell_address = eeprom_photocell_address_counter % (2 * maximum_logs); 
-  EEPROM.update(eeprom_photocell_address, photocell_value);
+  eeprom_photocell_address = eeprom_photocell_address_counter % (2 * maximum_logs);
+  // EEPROM.update(eeprom_photocell_address, photocell_value);
   // go to the next address space for an integer
   eeprom_photocell_address_counter += 2;
 }
@@ -492,7 +510,8 @@ void read_ultrasonic_sensor(){
   previous logs will be overwritten; also, + (2 * maximum_logs) is 
   necessary to go after the addresses allocated for the photocell*/ 
   eeprom_ultrasonic_address = eeprom_ultrasonic_address_counter % (2 * maximum_logs) + (2 * maximum_logs); 
-  EEPROM.update(eeprom_ultrasonic_address, ultrasonic_distance);
+  // EEPROM.update(eeprom_ultrasonic_address, ultrasonic_distance);
+
   // go to the next address space for an integer
   eeprom_ultrasonic_address_counter += 2;
 }
@@ -537,8 +556,8 @@ void choose_menu_to_display(){
     case 2:
       Serial.println(">>> Reset Logger Data:");
       Serial.println(">>> Are you sure you want to reset the logs?");
-      Serial.println(">>> 1. Yes. (y)");
-      Serial.println(">>> 2. No. (n)");
+      Serial.println(">>> 1. Yes. (0)");
+      Serial.println(">>> 2. No. (1)");
       Serial.println();
       break;
     case 3:

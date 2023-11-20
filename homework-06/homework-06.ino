@@ -36,6 +36,9 @@ int sampling_rate;
 
 // maximum number of logs for each sensor
 int maximum_logs = 10;
+unsigned long int last_long_displayed = 0;
+// where data is stored from EEPROM reads
+int photocell_counter_value, ultrasonic_counter_value;
 /* because the logs of the ultrasonic will contain
 integers, which are stored on 2 bytes, 
 from byte 0-19, ultrasonic logs */
@@ -78,20 +81,6 @@ void loop() {
   if (Serial.available() > 0){
     handle_user_input();  
     choose_menu_to_display();
-
-    Serial.print(photocell_value);
-    Serial.print(" ");
-    Serial.print(photocell_threshold);
-    Serial.print(" ");
-    Serial.print(is_photocell_threshold_respected);
-    Serial.println();
-
-    Serial.print(ultrasonic_distance);
-    Serial.print(" ");
-    Serial.print(ultrasonic_threshold);
-    Serial.print(" ");
-    Serial.print(is_ultrasonic_threshold_respected);
-    Serial.println();
   }
 
   read_ultrasonic_sensor();
@@ -130,7 +119,8 @@ void handle_user_input(){
     case 3:
       handle_user_input_on_system_menu();
       break;
-    case 33:
+    case 31:
+      display_current_sensor_readings();
       break;
     
     case 4:
@@ -274,14 +264,16 @@ void handle_user_input_on_system_menu(){
     Serial.println(system_menu_error_input);
     return;
   } 
-
   switch (user_input_int) {
     case 1:
+      // switch to displaying current data from sensors
+      current_menu = 31;
       break;
     case 2:
       display_current_sensor_settings();
       break;
     case 3:
+      display_logged_data();
       break;
     case 4:
       // switch back to the main menu
@@ -289,6 +281,27 @@ void handle_user_input_on_system_menu(){
       break;
     default:
       break;
+  }
+}
+
+void display_current_sensor_readings(){
+  user_input_int = Serial.parseInt();
+
+  if (user_input_int == 1) {
+    current_menu = 3;
+  }
+
+  /* sampling interval it's in seconds, so
+  it must be transformed in milliseconds */
+  if ((millis() - last_long_displayed) > sampling_rate * 1000){
+    Serial.println("PRESS 1 TO EXIT!");
+    Serial.print("Photocell: ");
+    Serial.println(photocell_value);
+    Serial.print("Ultrasonic: ");
+    Serial.println(ultrasonic_distance);
+    Serial.println();
+
+    last_long_displayed = millis();
   }
 }
 
@@ -303,6 +316,24 @@ void display_current_sensor_settings(){
   Serial.print("LDR sensor threshold: ");
   Serial.println(photocell_threshold);
   Serial.println();
+}
+
+void display_logged_data(){
+  for(int i = 0; i < maximum_logs; i++){
+    // calculate the index address for each logs for the photocell
+    int photocell_index_address = i * 2;
+    /* add the maximum number of logs for a photocell to
+    get the address for the ultrasonic sensor */
+    int ultrasonic_index_address = photocell_index_address + 2 * maximum_logs;
+  
+    EEPROM.get(photocell_index_address, photocell_counter_value);
+    EEPROM.get(ultrasonic_index_address, ultrasonic_counter_value);
+
+    Serial.print("Photocell: ");
+    Serial.println(photocell_counter_value);
+    Serial.print("Ultrasonic: ");
+    Serial.println(ultrasonic_counter_value);
+  }
 }
 
 void handle_user_input_on_RGB_LED_menu(){
@@ -482,7 +513,7 @@ void choose_menu_to_display(){
       break;
     case 1:
       Serial.println(">>> Sensor Settings:");
-      Serial.println(">>> 1. Sensor Sampling Threshold");
+      Serial.println(">>> 1. Sensor Sampling Interval");
       Serial.println(">>> 2. Ultrasonic Alert Threshold");
       Serial.println(">>> 3. LDR Alert Threshold");
       Serial.println(">>> 4. Back");
@@ -490,7 +521,7 @@ void choose_menu_to_display(){
       break;
     case 11:
       Serial.println(">>> Sensor Settings > Sensor Sampling Interval");
-      Serial.print("Enter interval [1-10 integer]: ");
+      Serial.println("Enter interval [1-10 integer]: ");
       Serial.println();
       break;
     case 12:

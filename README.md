@@ -8,7 +8,8 @@ Every single homework will have its description, references, implementation deta
 - [H02 - RGB LED controlled by potentiometers](#homework-02)
 - [H03 - Elevator wannabe](#homework-03)
 - [H04 - 7-segment display controlled by a joystick](#homework-04)
-- [H05 - Stopwatch timer](#homework-05) 
+- [H05 - Stopwatch timer](#homework-05)
+- [H06 - Pseudo-smart environment monitor and logger](#homework-06)
 
 ## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
@@ -61,9 +62,25 @@ When pressing the **reset button (3rd)**, while the stopwatch is _paused_, the s
 
 Check out the <a href="https://www.youtube.com/watch?v=1QCtBLAy9iM">demo</a>. 
 
+## Homework 06 - Pseudo-smart environment monitor and logger
+A system that monitors an ultrasonic (**HC-SR04**[^7]) and **photocell (LDR)** sensor to gather information about their state. The data gathered will be logged in EEPROM [^9][^10] memory. Sensors' values can be interrogated in real time, _or_ the last 10(**this number can be modified**) logs stored in the EEPROM memory.
+
+For each sensor, a _threshold_ can be set. If the _RGB LED automatic mode_ is set to _ON_, it
+will let the user know if the thresholds for the sensors are respected by lighting it _green_; otherwise, the light will be _red_. 
+
+Also, the _RGB LED_ can be set to a certain color by writing the value for each color channel( R, G, B).
+
+| From the top | From the side|
+| ---------- | ---------- |
+| ![h6-circuit-from-top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/c4b7be88-9fcd-4eaf-9bdf-61e164c46db9) | ![h6-circuit-from-side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/d7d4d809-2c71-4c26-a556-8483545f9621) |
+
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3
 [^3]: _How does an RGB LED work?_ : https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color
 [^4]: _Debounce on a pushbutton_ : https://docs.arduino.cc/built-in-examples/digital/Debounce
 [^5]: _7-segment display_: https://en.wikipedia.org/wiki/Seven-segment_display
 [^6]: _4-digit 7 segment display_: https://softwareparticles.com/learn-how-a-4-digit-7-segment-led-display-works-and-how-to-control-it-using-an-arduino/
+[^7]: _HC-SR04 sensor_: https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/
+[^8]: _Photocell (LDR) sensor_: https://en.wikipedia.org/wiki/Photoresistor
+[^9]: _EEPROM memory in general_: https://en.wikipedia.org/wiki/EEPROM
+[^10]: _EEPROM.h in Arduino_: https://docs.arduino.cc/learn/built-in-libraries/eeprom

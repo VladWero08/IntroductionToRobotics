@@ -323,7 +323,7 @@ void display_current_sensor_readings(){
 void display_current_sensor_settings(){
   Serial.print("Sampling rate: ");
   if (sampling_rate != sensor_value_default) {
-    Serial.print("1 log/")
+    Serial.print("1 log/");
     Serial.print(sampling_rate);
     Serial.println(" sec");
   } else {

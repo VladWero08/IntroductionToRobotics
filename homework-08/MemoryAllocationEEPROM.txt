@@ -1,0 +1,14 @@
+[0 - 200] bytes
+
+1) [0] 	-> 1 byte for LCD brightness
+
+2) [1] 	-> 1 byte for Matrix brightness
+
+3) [2] 	-> 1 byte for sound: ON/OFF
+
+4) 	Name		Score 
+
+1st   	[3, 5]		[6, 9]		
+2nd   	[10, 12]	[13, 16]
+3rd   	[17, 19]	[20, 23] 
+

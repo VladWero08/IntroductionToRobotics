@@ -75,7 +75,7 @@ Also, the _RGB LED_ can be set to a certain color by writing the value for each 
 | ---------- | ---------- |
 | ![h6-circuit-from-top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/c4b7be88-9fcd-4eaf-9bdf-61e164c46db9) | ![h6-circuit-from-side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/d7d4d809-2c71-4c26-a556-8483545f9621) |
 
-# Homework 08 - Mini Sinister Escape: a matrix game
+## Homework 08 - Mini Sinister Escape: a matrix game
 Mini Sinister Escape is a matrix game that is about traveling between **4 rooms** and finding notes, to escape from the house. The main goal is to find the notes **as fast as possible**. The rooms will be displayed on a **8x8 1088AS matrix**[^11], as well as the player and the notes, and the movement of the player will be controlled with a **joystick**.  Before starting to play, the player will interact with a menu, which will be displayed on a **Liquid Crystal Display (LCD)**[^12].
 
 During the game, *a timer* and *the number of notes* collected will be displayed, so you better start looking for them.

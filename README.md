@@ -109,11 +109,12 @@ To move from one room to another, you will need to go to the edges of the matrix
     5. Back (to the main menu)
   - **About**: description of the game
 
-| From the top | From the side|
-| ---------- | ---------- |
-|  |  |
+| From the top | From the side| From perspective |
+| ---------- | ---------- | --------- |
+| ![h08-top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/2c6344a2-87a3-4d0a-8d2f-966e9f660626)| ![h08-side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/705049a0-a803-4a22-a69c-8d56db1371ee) | ![h08-perspective](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/ac58c8ea-0ef3-476a-a3f3-c9280964df29) |
 
-Check out the <a href="#">demo</a>. 
+Check out the <a href="https://www.youtube.com/watch?v=TzQdYPG2kqk">demo</a>. 
+_NOTE!_ Some LEDs do not work in the matrix, in the video. The player only needs to find one note, and that note is on a LED that is not working. ( it was randomly spawned there )
 
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3

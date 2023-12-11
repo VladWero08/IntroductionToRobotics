@@ -10,6 +10,7 @@ Every single homework will have its description, references, implementation deta
 - [H04 - 7-segment display controlled by a joystick](#homework-04)
 - [H05 - Stopwatch timer](#homework-05)
 - [H06 - Pseudo-smart environment monitor and logger](#homework-06)
+- [H08 - Mini Sinister Escape: a matrix game](#homework-08)
 
 ## Homework 02 - RGB LED controlled by potentiometers
 The focus of this assignment was to control each color channel(_Red_, _Green_, _Blue_) of an RGB LED [^3] using individual potentiometers. 
@@ -74,6 +75,46 @@ Also, the _RGB LED_ can be set to a certain color by writing the value for each 
 | ---------- | ---------- |
 | ![h6-circuit-from-top](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/c4b7be88-9fcd-4eaf-9bdf-61e164c46db9) | ![h6-circuit-from-side](https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/d7d4d809-2c71-4c26-a556-8483545f9621) |
 
+# Homework 08 - Mini Sinister Escape: a matrix game
+Mini Sinister Escape is a matrix game that is about traveling between **4 rooms** and finding notes, to escape from the house. The main goal is to find the notes **as fast as possible**. The rooms will be displayed on a **8x8 1088AS matrix**[^11], as well as the player and the notes, and the movement of the player will be controlled with a **joystick**.  Before starting to play, the player will interact with a menu, which will be displayed on a **Liquid Crystal Display (LCD)**[^12].
+
+During the game, *a timer* and *the number of notes* collected will be displayed, so you better start looking for them.
+
+In the matrix, you will be represented by a *fast-blinking red dot*, while the notes will be *slow-blinking red dots*. Besides this, the walls will be *static red dots*. As you might have guessed already, you will not be able to move through the walls, you need to move through *uncolored dots*.
+
+The notes will appear randomly in one of the rooms. Similarly to the notes, at the beginning, you will be spawned in a random room. This is *how the rooms will be connected*:
+
+<p align="center">
+  <img src="https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/9f16bf79-13df-4e8c-9e90-a6b28789008b" width="576" height="496"/>
+</p>
+
+So, in each room you will be able to move: *up*, *down*, *left* or *right*. This is the configuration of the rooms:
+
+<p align="center">
+  <img src="https://github.com/VladWero08/IntroductionToRobotics/assets/77508081/2cb3bc30-e8c1-49db-a001-2d9f9b466e99" width="576" height="496"/>
+</p>
+
+To move from one room to another, you will need to go to the edges of the matrix and point the joystick in the specific direction of the *"door"* (empty dots on the edge of the matrix).
+
+#### Menu structure:
+- **Main**
+  - **Start game**: after the game has finished, the user will need to choose from
+    1. Play again
+    2. Back (to the main menu)
+  - **Settings**
+    1. Enter name
+    2. LCD brightness setting
+    3. Matrix brightness setting
+    4. Sound setting (ON/OFF)
+    5. Back (to the main menu)
+  - **About**: description of the game
+
+| From the top | From the side|
+| ---------- | ---------- |
+|  |  |
+
+Check out the <a href="#">demo</a>. 
+
 [^1]: _Introduction to Arduino_ : https://www.arduino.cc/en/Guide/Introduction
 [^2]: _What is Arduino Uno?_ : https://store.arduino.cc/products/arduino-uno-rev3
 [^3]: _How does an RGB LED work?_ : https://www.circuitbread.com/tutorials/how-rgb-leds-work-and-how-to-control-color
@@ -84,3 +125,5 @@ Also, the _RGB LED_ can be set to a certain color by writing the value for each 
 [^8]: _Photocell (LDR) sensor_: https://en.wikipedia.org/wiki/Photoresistor
 [^9]: _EEPROM memory in general_: https://en.wikipedia.org/wiki/EEPROM
 [^10]: _EEPROM.h in Arduino_: https://docs.arduino.cc/learn/built-in-libraries/eeprom
+[^11]: _How to use an 8x8 1088AS?_ : https://www.youtube.com/watch?v=X9tsfOeYnAU
+[^12]: _What is LCD?_ : https://www.techtarget.com/whatis/definition/LCD-liquid-crystal-display
